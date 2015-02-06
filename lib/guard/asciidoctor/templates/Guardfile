@@ -1,0 +1,6 @@
+# Sample guardfile block for Guard::Asciidoctor
+# You can use some options to change guard-asciidoctor configuration
+
+guard :asciidcotor do
+  watch(/^.+(\.asciidoc\.adoc)$/)  
+end
