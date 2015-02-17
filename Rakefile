@@ -1,17 +1,15 @@
-require 'rake'
-require 'rake/testtask'
 require 'bundler/gem_tasks'
 
-Rake::TestTask.new do |t|
-  t.pattern = 'test/**/*_test.rb'
-  t.libs.push 'test'
+default_tasks = []
+
+require 'rspec/core/rake_task'
+default_tasks << RSpec::Core::RakeTask.new(:spec) do |t|
+  t.verbose = (ENV['CI'] == 'true')
 end
 
-namespace :test do
-  task :coverage do
-    ENV['COVERAGE'] = 'true'
-    Rake::Task['test'].invoke
-  end
+if ENV['CI'] != 'true'
+  require 'rubocop/rake_task'
+  default_tasks << RuboCop::RakeTask.new(:rubocop)
 end
 
-task default: :test
+task default: default_tasks.map(&:name)
