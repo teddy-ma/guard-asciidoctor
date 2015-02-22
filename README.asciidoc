@@ -1,6 +1,5 @@
-[[guardasciidoctor]]
-Guard::Asciidoctor
-------------------
+= Guard::Asciidoctor
+
 
 image:https://badge.fury.io/rb/guard-asciidoctor.svg["Gem Version", link="http://badge.fury.io/rb/guard-asciidoctor"]
 image:https://travis-ci.org/teddy-ma/guard-asciidoctor.svg["Build Status", link="https://travis-ci.org/teddy-ma/guard-asciidoctor"]
@@ -8,9 +7,7 @@ image:https://coveralls.io/repos/teddy-ma/guard-asciidoctor/badge.svg["Build Sta
 
 Watches Asciidoc files, compiles them to HTML on change.
 
-[[install]]
-Install
-~~~~~~~
+== Install
 
 Please be sure to have https://github.com/guard/guard[Guard] installed
 before continuing.
@@ -27,14 +24,12 @@ end
 
 Add guard definition to your Guardfile by running this command:
 
-code,bash
+[code,bash]
 ----
 $ guard init asciidoctor
 ----
 
-[[contributing]]
-Contributing
-~~~~~~~~~~~~
+== Contributing
 
 1.  Fork it (
 https://github.com/teddy-ma/guard-asciidoctor/fork )
