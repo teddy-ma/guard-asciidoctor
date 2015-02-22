@@ -1,26 +1,24 @@
 # Guard::Asciidoctor
 
-TODO: Write a gem description
+Watches Asciidoc files, compiles them to HTML on change.
 
-## Installation
+## Install
 
-Add this line to your application's Gemfile:
+Please be sure to have [Guard](https://github.com/guard/guard) installed before continuing.
+
+Add Guard::Asciidoctor to your `Gemfile`:
 
 ```ruby
-gem 'guard-asciidoctor'
+group :development do
+  gem 'guard-asciidoctor'
+end
 ```
 
-And then execute:
+Add guard definition to your Guardfile by running this command:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install guard-asciidoctor
-
-## Usage
-
-TODO: Write usage instructions here
+```bash
+$ guard init asciidoctor
+```
 
 ## Contributing
 

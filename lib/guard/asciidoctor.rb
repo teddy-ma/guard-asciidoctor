@@ -20,7 +20,7 @@ module Guard
       opts = {
         notifications:  true,
         helper_modules: []
-      }.merge(options)
+      }.merge(opts)
 
       super(opts)
     end
@@ -32,7 +32,7 @@ module Guard
     #
     def start
       Compat::UI.info "method start"
-      run_all if options[:run_at_start]
+      run_all #if options[:run_at_start]
     end
 
     # Called when `stop|quit|exit|s|q|e + enter` is pressed (when Guard quits).
@@ -135,16 +135,18 @@ module Guard
     # Provide a logical extension.
     #
     # Examples:
-    #   "path/foo.adoc"     -> "foo.html"
-    #   "path/foo.asciidoc" -> "foo.html"
+    #   "path/foo.haml"     -> "foo.html"
+    #   "path/foo"          -> "foo.html"
+    #   "path/foo.bar"      -> "foo.bar.html"
+    #   "path/foo.bar.haml" -> "foo.bar"
     #
     # @param file String path to file
     # @return String file name including extension
     #
     def _output_filename(file)
-      sub_strings  = File.basename(file).split('.')
-      base_name    = sub_strings[0..-2]
-      "#{base_name.join('.')}.html"
+      sub_strings           = File.basename(file).split('.')
+      base_name, extensions = sub_strings.first, sub_strings[1..-1]
+      [base_name, extensions].flatten.join('.')
     end
   end
 
