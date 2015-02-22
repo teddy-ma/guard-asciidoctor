@@ -1,0 +1,44 @@
+[[guardasciidoctor]]
+Guard::Asciidoctor
+------------------
+
+image:https://badge.fury.io/rb/guard-asciidoctor.svg["Gem Version", link="http://badge.fury.io/rb/guard-asciidoctor"]
+image:https://travis-ci.org/teddy-ma/guard-asciidoctor.svg["Build Status", link="https://travis-ci.org/teddy-ma/guard-asciidoctor"]
+image:https://coveralls.io/repos/teddy-ma/guard-asciidoctor/badge.svg["Build Status", link="https://coveralls.io/repos/teddy-ma/guard-asciidoctor/"]
+
+Watches Asciidoc files, compiles them to HTML on change.
+
+[[install]]
+Install
+~~~~~~~
+
+Please be sure to have https://github.com/guard/guard[Guard] installed
+before continuing.
+
+Add Guard::Asciidoctor to your `Gemfile`:
+
+[code,ruby]
+----
+group :development do
+  gem 'guard-asciidoctor'
+end
+----
+
+
+Add guard definition to your Guardfile by running this command:
+
+code,bash
+----
+$ guard init asciidoctor
+----
+
+[[contributing]]
+Contributing
+~~~~~~~~~~~~
+
+1.  Fork it (
+https://github.com/teddy-ma/guard-asciidoctor/fork )
+2.  Create your feature branch (`git checkout -b my-new-feature`)
+3.  Commit your changes (`git commit -am 'Add some feature'`)
+4.  Push to the branch (`git push origin my-new-feature`)
+5.  Create a new Pull Request

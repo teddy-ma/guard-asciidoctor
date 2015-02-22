@@ -1,0 +1,7 @@
+language: ruby
+bundler_args: --without development
+rvm:
+  - 2.2.0
+notifications:
+  recipients:
+    - mlc880926@gmail.com
