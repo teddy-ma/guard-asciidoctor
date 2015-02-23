@@ -20,7 +20,7 @@ module Guard
       opts = {
         notifications:  true,
         helper_modules: []
-      }.merge(opts)
+      }.merge(options)
 
       super(opts)
     end
@@ -144,9 +144,9 @@ module Guard
     # @return String file name including extension
     #
     def _output_filename(file)
-      sub_strings           = File.basename(file).split('.')
-      base_name, extensions = sub_strings.first, sub_strings[1..-1]
-      [base_name, extensions].flatten.join('.')
+      sub_strings = File.basename(file).split('.')
+      base_name   = sub_strings[0..-2]
+      "#{base_name.join('.')}.html"
     end
   end
 
