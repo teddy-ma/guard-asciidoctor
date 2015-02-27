@@ -89,9 +89,7 @@ module Guard
 
     def compile_asciidoc(file)
       content = File.new(file).read
-      #engine  = ::Haml::Engine.new(content, (options[:haml_options] || {}))
       engine = ::Asciidoctor.convert content, safe: 'safe'
-      #engine.render scope_object
     rescue StandardError => error
       message = "Asciidoc compilation of #{file} failed!\nError: #{error.message}"
       Compat::UI.error message
@@ -135,10 +133,8 @@ module Guard
     # Provide a logical extension.
     #
     # Examples:
-    #   "path/foo.haml"     -> "foo.html"
-    #   "path/foo"          -> "foo.html"
-    #   "path/foo.bar"      -> "foo.bar.html"
-    #   "path/foo.bar.haml" -> "foo.bar"
+    #   "path/foo.adoc"     -> "foo.html"
+    #   "path/foo.asciidoc" -> "foo.html"
     #
     # @param file String path to file
     # @return String file name including extension
