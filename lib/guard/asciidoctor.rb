@@ -1,4 +1,5 @@
 require 'asciidoctor'
+require 'asciidoctor-pdf'
 require 'guard/compat/plugin'
 require 'guard/asciidoctor/notifier'
 
@@ -19,7 +20,8 @@ module Guard
 
       opts = {
         notifications:  true,
-        helper_modules: []
+        helper_modules: [],
+        use_pdf: false
       }.merge(options)
 
       super(opts)
@@ -75,7 +77,11 @@ module Guard
 
         output_paths.each do |output_file|
           FileUtils.mkdir_p File.dirname(output_file)
-          File.open(output_file, 'w') { |f| f.write(compiled_asciidoc) }
+          if options[:use_pdf]
+            compiled_asciidoc.render_file output_file
+          else
+            File.open(output_file, 'w') { |f| f.write(compiled_asciidoc) }
+          end
         end
 
         message = "Successfully compiled asciidoc!\n"
@@ -89,7 +95,12 @@ module Guard
 
     def compile_asciidoc(file)
       content = File.new(file).read
-      engine = ::Asciidoctor.convert content, safe: 'safe'
+      engine_params = {}
+      engine_params[:safe]='safe'
+      if options[:use_pdf]
+        engine_params[:backend] = 'pdf'
+      end
+      engine = ::Asciidoctor.convert content, engine_params
     rescue StandardError => error
       message = "Asciidoc compilation of #{file} failed!\nError: #{error.message}"
       Compat::UI.error message
@@ -142,7 +153,12 @@ module Guard
     def _output_filename(file)
       sub_strings = File.basename(file).split('.')
       base_name   = sub_strings[0..-2]
-      "#{base_name.join('.')}.html"
+      extension = ".html"
+      if options[:use_pdf]
+        extension = ".pdf"
+      end
+
+      "#{base_name.join('.')}#{extension}"
     end
   end
 
