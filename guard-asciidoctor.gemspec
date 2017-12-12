@@ -25,5 +25,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'guard', '~> 2.0'
   spec.add_dependency 'guard-compat', '~> 1.1'
   spec.add_dependency 'asciidoctor'
+  spec.add_dependency 'asciidoctor-pdf'
 
 end
